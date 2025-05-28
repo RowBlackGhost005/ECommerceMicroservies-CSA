@@ -42,7 +42,9 @@ set DB_USER=MySQLUser
 set DB_PASSWORD=MySQLUserPassword
 set USERSERVICE_JWT_SECRET=YourSecretCustomJWTKey
 ```
-*Note: Your JWT secret must be at least 24 characters long.*
+**You may be required to restart your system to be able to read those env variables**
+
+*Note 1: Your JWT secret must be at least 24 characters long.*
 
 *Note 2: Set your correct MySQL User and Password.*
 
