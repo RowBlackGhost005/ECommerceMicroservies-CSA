@@ -29,6 +29,9 @@ You can use GIT or download it as a ZIP in the *`<>Code`* button
 git clone https://github.com/RowBlackGhost005/ECommerceMicroservies-CSA.git
 ```
 
+---
+
+
 **2. Setup your enviroment variables [Windows]**
 
 *If you cant setup env variables in your machine, check step 3*
@@ -44,6 +47,8 @@ set USERSERVICE_JWT_SECRET=YourSecretCustomJWTKey
 *Note 2: Set your correct MySQL User and Password.*
 
 *Note 3: You can skip this step but you'll need extra steps shown down below.*
+
+---
 
 **3. Manually setting up the .properties files (Optional)**
 
@@ -72,6 +77,8 @@ Either remove or comment with # at the beginning
 ```
 *Note that you now bypassed the config server and it wont be required to run because no service will query its config from it (Unless you only set manually some .properties files)*
 
+---
+
 **4. Setup the Databases in MySQL**
 
 Open MySQL Workbench or CLI to create the databases (Tables are automatically generated)
@@ -82,6 +89,8 @@ CREATE DATABASE OrdersCSA;
 CREATE DATABASE PaymentsCSA;
 ```
 *Note: You *can* create your own databases name but only if you skip step 2 and follow the linked steps*
+
+---
 
 **5. Execute the services**
 
@@ -99,7 +108,9 @@ For this ECommerce to work you'll need to execute the services in a specific ord
 ```
 *Note: The ports used by these services are [8761 , 8888 , 8080 , 8084 , 8082 , 8081 , 8083] respectively*
 
-**5. Verify the execution**
+---
+
+**6. Verify the execution**
 
 Once your services are up and running you can monitor them by going into the Eureka endpoint located at: `http://localhost:8761/`, there you should be able to see each service as well as the API Gateway.
 
@@ -118,7 +129,7 @@ The section below will show you how to interact with the system through the API 
 #### Register
 
 ```http
-    POST http://localhost:8080/auth/register
+POST http://localhost:8080/auth/register
 ```
 
 | Parameter | Type     | Description                |
@@ -126,7 +137,7 @@ The section below will show you how to interact with the system through the API 
 | `Credentials` | `JSON` | {"username":"admin" , "password":"password"} | 
 
 Response: (String)
-```JSON
+```
 User registered sucessfully
 ```
 
