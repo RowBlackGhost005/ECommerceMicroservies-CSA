@@ -72,7 +72,7 @@ Either remove or comment with # at the beginning
 ```
 *Note that you now bypassed the config server and it wont be required to run because no service will query its config from it (Unless you only set manually some .properties files)*
 
-**3. Setup the Databases in MySQL**
+**4. Setup the Databases in MySQL**
 
 Open MySQL Workbench or CLI to create the databases (Tables are automatically generated)
 ```
@@ -83,7 +83,7 @@ CREATE DATABASE PaymentsCSA;
 ```
 *Note: You *can* create your own databases name but only if you skip step 2 and follow the linked steps*
 
-**4. Execute the services**
+**5. Execute the services**
 
 Now you can execute each service by calling the `MAIN` class located in `/src/main/java/com.marin.{AppName}.{AppName}Application.java` of each service.
 
@@ -99,7 +99,7 @@ For this ECommerce to work you'll need to execute the services in a specific ord
 ```
 *Note: The ports used by these services are [8761 , 8888 , 8080 , 8084 , 8082 , 8081 , 8083] respectively*
 
-**4. Verify the execution**
+**5. Verify the execution**
 
 Once your services are up and running you can monitor them by going into the Eureka endpoint located at: `http://localhost:8761/`, there you should be able to see each service as well as the API Gateway.
 
@@ -127,15 +127,18 @@ The section below will show you how to interact with the system through the API 
 
 Response: (String)
 ```JSON
-    User registered sucessfully
+User registered sucessfully
 ```
 
+---
 
 #### Login
 
 ```http
-    POST http://localhost:8080/auth/login
+POST http://localhost:8080/auth/login
 ```
+
+---
 
 | Parameter | Type     | Description                | Response                |
 | :-------- | :------- | :------------------------- | :------------------------- |
@@ -143,13 +146,15 @@ Response: (String)
 
 Response: (JWT Token)
 ```JSON
-    eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlkIjoxLCJyb2xlcyI6WyJST0xASDFETUlOIl0sImlhdCI6MTc0ODM5Mzk1NiwiZXhwIjoxNzQ4NDgwMzU2fQ.wZiTCpWuKeEHnfX9_GoE3_RplZOy7eVcUph0_19HGYo
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlkIjoxLCJyb2xlcyI6WyJST0xASDFETUlOIl0sImlhdCI6MTc0ODM5Mzk1NiwiZXhwIjoxNzQ4NDgwMzU2fQ.wZiTCpWuKeEHnfX9_GoE3_RplZOy7eVcUph0_19HGYo
 ```
+
+---
 
 #### Profile
 
 ```http
-    GET http://localhost:8080/users/profile
+GET http://localhost:8080/users/profile
 ```
 
 | Parameter | Type     | Description                |
@@ -164,11 +169,13 @@ Response: Profile of the Authenticated user (JSON Object)
     }
 ```
 
+---
+
 #### Profile by User
 
 Requires ADMIN JWT Token
 ```http
-    GET http://localhost:8080/users/profile/{Username}
+GET http://localhost:8080/users/profile/{Username}
 ```
 
 | Parameter | Type     | Description                |
@@ -184,11 +191,13 @@ Response: Profile of the User with username {username} (JSON Object)
     }
 ```
 
+---
+
 #### All users
 
 Requires ADMIN JWT Token
 ```http
-    GET http://localhost:8080/users
+GET http://localhost:8080/users
 ```
 
 | Parameter | Type     | Description                |
@@ -209,11 +218,13 @@ Response: Array of all registered users (JSON Array)
 ]
 ```
 
+---
+
 #### Delete user
 
 Requires ADMIN JWT Token
 ```http
-    DELETE http://localhost:8080/users/{id}
+DELETE http://localhost:8080/users/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -226,6 +237,7 @@ Response: 200 (OK)
 1
 ```
 
+---
 
 ### Products
 
@@ -233,7 +245,7 @@ Response: 200 (OK)
 
 Requires ADMIN JWT Token
 ```http
-    POST http://localhost:8080/products
+POST http://localhost:8080/products
 ```
 
 | Parameter | Type     | Description                |
@@ -251,11 +263,12 @@ Response: Registered product (JSON Object)
     "stock": 25
 }
 ```
+---
 
 #### Fetch all products
 
 ```http
-    GET http://localhost:8080/products
+GET http://localhost:8080/products
 ```
 
 | Parameter | Type     | Description                |
@@ -289,10 +302,12 @@ Response: All registered products (JSON Array)
 ]
 ```
 
+---
+
 #### Fetch product by ID
 
 ```http
-    GET http://localhost:8080/products/{id}
+GET http://localhost:8080/products/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -311,11 +326,13 @@ Response: Product with ID {id} (JSON Object)
     }
 ```
 
+---
+
 #### Update product
 
 Updates one or more fields of a product if present in the Body.
 ```http
-    PUT http://localhost:8080/products/{id}
+PUT http://localhost:8080/products/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -335,10 +352,12 @@ Response: Product with ID {id} updated (JSON Object)
 }
 ```
 
+---
+
 #### Add stock to a product
 
 ```http
-    PUT http://localhost:8080/products/stock/add
+PUT http://localhost:8080/products/stock/add
 ```
 
 | Parameter | Type     | Description                |
@@ -354,10 +373,12 @@ Response: New stock of the product (JSON)
 }
 ```
 
+---
+
 #### Remove stock of a product
 
 ```http
-    PUT http://localhost:8080/products/stock/add
+PUT http://localhost:8080/products/stock/add
 ```
 
 | Parameter | Type     | Description                |
@@ -373,10 +394,12 @@ Response: New stock of the product (JSON)
 }
 ```
 
+---
+
 #### Delete product
 
 ```http
-    DELETE http://localhost:8080/products/{id}
+DELETE http://localhost:8080/products/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -389,13 +412,14 @@ Response: 200 (OK)
 1
 ```
 
+---
 
 ### Orders
 
 #### Create an Order
 
 ```http
-    POST http://localhost:8080/orders
+POST http://localhost:8080/orders
 ```
 
 | Parameter | Type     | Description                |
@@ -429,10 +453,12 @@ Response: Registered Order (JSON Object)
 }
 ```
 
+---
+
 #### Get orders of Auth User
 
 ```http
-    GET http://localhost:8080/orders/user
+GET http://localhost:8080/orders/user
 ```
 
 | Parameter | Type     | Description                |
@@ -498,11 +524,12 @@ Response: Registered Orders from authenticated user (JSON Object)
     },
 ]
 ```
+---
 
 #### Cancel an order
 
 ```http
-    POST http://localhost:8080/orders/cancel/{id}
+POST http://localhost:8080/orders/cancel/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -541,12 +568,14 @@ Response: Order cancelled (JSON Object)
 }
 ```
 
+---
+
 #### Process an Order
 
 Advances the status of an order Ordered -> Processing -> Shipped -> Delivered
 
 ```http
-    POST http://localhost:8080/orders/process/{id}
+POST http://localhost:8080/orders/process/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -585,11 +614,13 @@ Response: Order with new status (JSON Object)
 }
 ```
 
+---
+
 #### Fetch all orders
 
 
 ```http
-    GET http://localhost:8080/orders
+GET http://localhost:8080/orders
 ```
 
 | Parameter | Type     | Description                |
@@ -677,11 +708,13 @@ Response: All registered orders (JSON Array)
 ]
 ```
 
+---
+
 #### Fetch order by ID
 
 
 ```http
-    GET http://localhost:8080/orders/{id}
+GET http://localhost:8080/orders/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -720,11 +753,13 @@ Response: Order with ID {id} (JSON Object)
 }
 ```
 
+---
+
 #### Fetch orders by auth user
 
 Fetch all orders of the authenticated user
 ```http
-    GET http://localhost:8080/orders/user
+GET http://localhost:8080/orders/user
 ```
 
 | Parameter | Type     | Description                |
@@ -812,11 +847,13 @@ Response: All orders of the authenticated user (JSON Array)
 ]
 ```
 
+---
+
 #### Fetch orders by user id
 
 Fetch all orders of the authenticated user
 ```http
-    GET http://localhost:8080/orders/user/{id}
+GET http://localhost:8080/orders/user/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -905,6 +942,8 @@ Response: All orders from the user with ID {id} (JSON Array)
 ]
 ```
 
+---
+
 ### Payments
 
 #### Create a payment order of an order
@@ -912,7 +951,7 @@ Response: All orders from the user with ID {id} (JSON Array)
 Creates a Payment Order used to link a paymet to an order, this is usually called only
 by the Orders Service after creating an order.
 ```http
-    POST http://localhost:8080/payments/orders
+POST http://localhost:8080/payments/orders
 ```
 
 | Parameter | Type     | Description                |
@@ -952,11 +991,14 @@ Response: Processed Payment (JSON Object)
 }
 ```
 
+---
+
+
 #### Fetch payments
 
 Fetch all registerd payments
 ```http
-    GET http://localhost:8080/payments
+GET http://localhost:8080/payments
 ```
 
 | Parameter | Type     | Description                |
@@ -993,11 +1035,14 @@ Response: Registered payments (JSON Array)
 ]
 ```
 
+---
+
+
 #### Update payment status
 
 Sets the status of an order directly like 'CANCELLED', 'CONFIRMED' , 'PROCESSING
 ```http
-    PUT http://localhost:8080/payments/{id}
+PUT http://localhost:8080/payments/{id}
 ```
 
 | Parameter | Type     | Description                |
@@ -1015,6 +1060,8 @@ Response: Payment with status updated (JSON Object)
     "status": "CANCELLED"
 }
 ```
+
+---
 
 
 # Projects
