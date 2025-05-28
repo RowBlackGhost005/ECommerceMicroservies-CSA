@@ -145,7 +145,7 @@ POST http://localhost:8080/auth/login
 | `Credentials` | `JSON` | {"username":"admin" , "password":"password"} | JWT Token|
 
 Response: (JWT Token)
-```JSON
+```
 eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlkIjoxLCJyb2xlcyI6WyJST0xASDFETUlOIl0sImlhdCI6MTc0ODM5Mzk1NiwiZXhwIjoxNzQ4NDgwMzU2fQ.wZiTCpWuKeEHnfX9_GoE3_RplZOy7eVcUph0_19HGYo
 ```
 
@@ -973,7 +973,7 @@ Response: Registered Payment (JSON Object)
 
 Process the payment to 'pay' (Simulated, will always return status 'CONFIRMED' unless previosuly cancelled)
 ```http
-    POST http://localhost:8080/payments/process
+POST http://localhost:8080/payments/process
 ```
 
 | Parameter | Type     | Description                |
